@@ -23,22 +23,38 @@
             <p>
                 Please display a hello world message in JavaScript. 
                 <script>
-                    document.title = "JavaScript Basic -- In class practice -- Yilian Zhang";
+                    document.title = "JavaScript Basic -- In class practice -- Mariia Nechepurenko";
                     // use document.write to display a message
-                    
+                    document.write("Hello, World!");
                     // use console.log to display a message   
-                  
-                    
+                    console.log("Print for debugging");  
                 </script>
             </p>
             <p> Please import external file hello.js here. 
-                
+                <script src="js/hello.js"></script>
             </p>
         </div>
 
         <div class="practice">
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
+
+            <script>
+                let x = 10;
+                let y = 5;
+                let sum = x + y;
+
+                const PI = 3.14;
+
+                var number = 254;
+
+                let numbers = [1, 2, 3];
+
+                let user = { name: "Masha", age: 20 };
+
+                document.write(x + "<br>" + y + "<br>" + sum + "<br>" + PI + "<br>" + number + "<br>" + numbers + "<br>" + user.name + ", " + user.age);
+
+            </script>
 
 
         </div>
@@ -49,13 +65,29 @@
 
             <p> Write a table to the page </p>
 
+
+            <script>
+                document.write("<img src='img/die1.png' width='100'>");
+
+                document.write("<table border='1' cellpadding='5'>");
+                document.write("<tr><th>A</th><th>B</th></tr>");
+                document.write("<tr><td>1</td><td>2</td></tr>");
+                document.write("<tr><td>3</td><td>4</td></tr>");
+                document.write("</table>");
+            </script>
         </div>
 
         <div class="practice">
             <h1>Window and Document Object </h1>
             <p> Try alert, open, location, url </p>
             <script>
+                alert("Hello from JavaScript!");
 
+                document.write("<p>Current URL: " + document.URL + "</p>");
+
+                window.open("https://www.google.com/", "_blank");
+
+                document.write("<p>Browser location is: " + window.location.href + "</p>");
             </script>
 
         </div>
@@ -77,6 +109,11 @@
             <p>Please write JavaScript code to change the content of each paragraph.​
             <p>
 
+            <script>
+                document.getElementById("p1").innerHTML = " This is the new content for paragraph one. ";
+                document.getElementById("p2").innerHTML = " This is the new content for paragraph two. ";
+                document.getElementById("p3").innerHTML = " This is the new content for paragraph three. ";
+            </script>
 
         </div>
 
@@ -85,7 +122,18 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
+                    const Num1 = document.getElementsByName("addnum1")[0];
+                    const Num2 = document.getElementsByName("num2")[0];
 
+                    //console.log(Num1);
+                    //console.log(Num2);
+
+                    var a = parseInt(Num1.value);
+                    var b = parseInt(Num2.value); 
+
+                    var result = a + b;
+
+                    document.getElementById("result").innerHTML = result;
 
                 }
             </script>
@@ -101,20 +149,45 @@
             <form>
                 <p>
                     <label> Name:
-                        <input type="text" id="cName">
+                        <input type="text" id="userName">
                     </label>
                 </p>
 
-                <p id="message">
-
+                <p id="WelcomeMessage">
                 </p>
+
+                <script>
+                const nameElement = document.getElementById("userName");
+
+                function blurWelcome(){
+                    const name = nameElement.value;
+                    const message = "Welcome to the Form, " + name;
+                    document.getElementById("WelcomeMessage").innerHTML = message;
+                }
+
+                nameElement.addEventListener("blur", blurWelcome);
+
+                </script>
 
                 <p>
                     <label> Email:
                         <input type="text" id="cEmail">
                     </label>
                 </p>
+                <script>
+                const mailElement = document.getElementById("cEmail");
+
+                function blurMail(){
+                    const email = mailElement.value;
+                    const message = "You entered the email: " + email;
+                    document.getElementById("WelcomeMessage").innerHTML = message;
+                }
+
+                mailElement.addEventListener("blur", blurMail);
+                </script>
             </form>
+
+            
 
         </div>
 
@@ -123,6 +196,20 @@
             Calculating Square:
             <input type="text" id="squarenum" placeholder="Type in a number"> <sup> 2 </sup> =
             <label id="squareresult"> ? </label>
+
+            <script>
+                const userValue = document.getElementById("squarenum");
+
+                function calculateSquare(){
+                    const number = userValue.value;
+                    const square = number * number;
+                    document.getElementById("squareresult").innerHTML = square; 
+                    
+                }
+
+                userValue.addEventListener("blur", calculateSquare);
+
+            </script>
 
         </div>
 
@@ -138,6 +225,18 @@
 
             <div id="innerHTMLmessage"> 
             </div>
+
+            <script>
+                const clickButton = document.getElementById("tryit");
+                const userCode = document.getElementById("code");
+
+                function displayCode(){
+                    const code = userCode.value;
+                    document.getElementById("innerHTMLmessage").innerHTML = code; 
+                }
+
+                clickButton.addEventListener("click", displayCode);
+            </script>
 
 
         </div>
@@ -158,10 +257,36 @@
 
             <p id="price">
 
+
             </p>
 
             <script type="text/javascript">
+                const yearSelect = document.getElementById("year");
+                const conditionSelect = document.getElementById("condition");
 
+                function estimatePrice(){
+                    const year = yearSelect.value;
+                    const condition = conditionSelect.value;
+                    let price = 0;
+                    if (year == "2003"){
+                        if (condition == "Fair"){
+                            price = 1000;
+                        } else if (condition == "Good"){
+                            price = 1500;
+                        }
+                    } else if (year == "2004"){
+                        if (condition == "Fair"){
+                            price = 1500;
+                        } else if (condition == "Good"){
+                            price = 2000;
+                        }
+                    }
+
+                    document.getElementById("price").innerHTML = "Price: $" + price;
+                }
+
+                yearSelect.addEventListener("blur", estimatePrice);
+                conditionSelect.addEventListener("blur", estimatePrice);
 
 
             </script>
@@ -173,6 +298,30 @@
             <p> Choose your favorite theme(warm, cool, hot)
                 <input type="text" id="theme">
             </p>
+
+            <script>
+                const themeInput = document.getElementById("theme");
+
+                function changeUserTheme(){
+                    const theme = themeInput.value;
+                    var bcolor = "white"
+
+                    switch(theme){
+                        case "warm":
+                            bcolor = "yellow";
+                            break;
+                        case "cool":
+                            bcolor = "lightblue";
+                            break;
+                        case "hot":
+                            bcolor = "red";
+                            break;
+                    }
+                    document.body.style.backgroundColor = bcolor;
+                }
+
+                themeInput.addEventListener("blur", changeUserTheme);
+            </script>
 
         </div>
 
@@ -203,6 +352,70 @@
 
             </p>
 
+            <script>
+                const ageSelect = document.getElementById("agegroup");
+                const coverageOptions = document.getElementsByName("coverage");
+
+                function calculatePremium(){
+                    const agegroup = ageSelect.value;
+                    const coverage = Array.from(coverageOptions).find(radio => radio.checked).value;
+                    let premium = 0;
+
+                    switch(coverage){
+                        case "100000":
+                            switch(agegroup){
+                                case "under 30":
+                                    premium = 150;
+                                    break;
+                                case "30-34":
+                                    premium = 130;
+                                    break;
+                                case "35-39":
+                                    premium = 120;
+                                    break;
+                                case "40-44":
+                                    premium = 100;
+                                    break;
+                            }
+                            break;
+                        case "200000":
+                            switch(agegroup){
+                                case "under 30":
+                                    premium = 200;
+                                    break;
+                                case "30-34":
+                                    premium = 180;
+                                    break;
+                                case "35-39":
+                                    premium = 160;
+                                    break;
+                                case "40-44":
+                                    premium = 140;
+                                    break;
+                            }
+                            break;
+                        case "300000":
+                            switch(agegroup){
+                                case "under 30":
+                                    premium = 250;
+                                    break;
+                                case "30-34":
+                                    premium = 220;
+                                    break;
+                                case "35-39":
+                                    premium = 200;
+                                    break;
+                                case "40-44":
+                                    premium = 180;
+                                    break;
+                            }
+                            break;
+                    }
+                    document.getElementById("premiumresult").textContent = "Your premium is $" + premium;
+                }
+                document.querySelector('input[type="button"][value="Check Premium"]').addEventListener("click", calculatePremium);
+            </script>
+
         </div>
 
 
@@ -215,6 +428,23 @@
             <p>
                 <input type="button" value="Click for Square">
             </p>
+            <p id="outputSquare"></p>
+
+            <script>
+                const userNumber = document.getElementById("inputnumber1");
+
+                function squareNumber(){
+                    const N = parseInt(userNumber.value);
+                    let output = "";
+                    for (let i = 1; i <= N; i++){
+                        const square = i * i;
+                        output += "The square of " + i + " is " + square + "<br>";
+                    }
+                    document.getElementById("outputSquare").innerHTML = output;
+                }
+
+                document.querySelector('input[type="button"][value="Click for Square"]').addEventListener("click", squareNumber);
+            </script>
 
         </div>
 
@@ -233,6 +463,23 @@
 
             </div>
 
+            <script>
+                const userTable = document.getElementById("inputnumber2");
+
+                function multiplicationTable() {
+                    const N = parseInt(userTable.value);
+                    let output = ""; 
+
+                    for (let i = 1; i <= 10; i++) {
+                    output += `${N} x ${i} = ${N * i} <br>`;
+                    }
+
+                    document.getElementById("loopoutput").innerHTML = output;
+                }
+
+                document.querySelector('input[type="button"][value="Click for multiplication table"]').addEventListener("click", multiplicationTable);
+            </script>
+
         </div>
 
 
@@ -243,7 +490,8 @@
             <p>
                 <input type="button" value="Click for multiplication drill">
             </p>
-            <script src="js\mathdrill.js">
+            <p id="mathdrilloutput"></p>
+            <script src="js/mathdrill.js">
             </script>
         </div>
 
@@ -279,6 +527,27 @@
                 </tr>
             </table>
 
+            <script>
+                const rollBtn = document.getElementById("roll");
+                const img = document.querySelector("img");
+
+                let stats = [0, 0, 0, 0, 0, 0];  
+
+                rollBtn.addEventListener("click", function () {
+                    const result = Math.floor(Math.random() * 6) + 1;
+                    img.src = `img/die${result}.png`;
+
+                    stats[result - 1]++;
+
+                    document.getElementById("r1").textContent = stats[0];
+                    document.getElementById("r2").textContent = stats[1];
+                    document.getElementById("r3").textContent = stats[2];
+                    document.getElementById("r4").textContent = stats[3];
+                    document.getElementById("r5").textContent = stats[4];
+                    document.getElementById("r6").textContent = stats[5];
+                });
+
+            </script>
         </div>
 
 
@@ -300,7 +569,22 @@
                 <img src="img/usca5.jpg" alt="usca">
             </div>
 			<script>
-				
+                var index = 0;
+                var imagelist = document.querySelectorAll(".img-container-hide");
+                imagelist[0].setAttribute("class", "img-container-show");
+
+                function changeImage(){
+                    
+                    imagelist[index].setAttribute("class", "img-container-hide");
+                    index++;
+                    if (index >= imagelist.length){
+                        index = 0;
+                    }
+                    imagelist[index].setAttribute("class", "img-container-show");
+                }
+
+                setInterval(changeImage, 2000);
+
 			</script>
 
 
